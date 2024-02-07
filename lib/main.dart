@@ -7,7 +7,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,15 +24,6 @@ class MyApp extends StatelessWidget {
 
 class Login extends StatefulWidget {
   const Login({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -59,6 +49,11 @@ class _LoginState extends State<Login> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              // Basic Widget 1: Flutter Logo
+              const FlutterLogo(size: 120),
+
+              const Spacer(),
+
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -90,6 +85,32 @@ class _LoginState extends State<Login> {
                   },
                 ),
               ),
+              const Divider(),
+
+              // Design Widget 1: Container with Box Decoration
+              Container(
+                height: 50,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  color: Colors.purple,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Custom Container',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                      wordSpacing: 2,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+              ),
+
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 16.0),
@@ -123,6 +144,16 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
+
+              // Design Widget 2: Divider
+              const Divider(),
+
+              // Basic Widget 3: Icon
+              const Icon(
+                Icons.favorite_border,
+                size: 50,
+                color: Colors.blue,
+              ),
             ],
           ),
         ),
@@ -131,7 +162,32 @@ class _LoginState extends State<Login> {
   }
 }
 
-//navegar en login
+// Design Widget 3: Card Widget
+class CustomCard extends StatelessWidget {
+  const CustomCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Card(
+      elevation: 5,
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text(
+          'Pagina de Login ',
+          style: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: Colors.purple,
+            wordSpacing: 2,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Navigating in login
 class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.email});
 
@@ -140,21 +196,42 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Home Page'),
-        ),
-        body: Column(
-          children: [
-            Text(email),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("Go back!"),
+      appBar: AppBar(
+        title: const Text('Home Page'),
+      ),
+      body: Column(
+        children: [
+          // Design Widget 4: Custom Card
+          const CustomCard(),
+
+          const SizedBox(height: 20),
+
+          Text(
+            'Welcome $email',
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+
+          const SizedBox(height: 20),
+
+          // Design Widget 5: Elevated Button
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.purple, // background
+                onPrimary: Colors.white, // foreground
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20, vertical: 10), // button padding
+                maximumSize: Size(200, 50), // set the maximum button size
+                shadowColor: Color(0xFF000000), // changes position of shadow
               ),
+              child: const Text("Regresar!"),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
