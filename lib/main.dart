@@ -10,14 +10,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo login',
+      title: 'Flutter Demo login and widgets',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         colorScheme:
             ColorScheme.fromSeed(seedColor: Colors.blue, secondary: Colors.red),
         useMaterial3: true,
       ),
-      home: const Login(title: 'Login App'),
+      home: const Login(title: 'Login and Widgets App'),
     );
   }
 }
@@ -52,7 +52,7 @@ class _LoginState extends State<Login> {
               // Basic Widget 1: Flutter Logo
               const FlutterLogo(size: 120),
 
-              const Spacer(),
+              const Divider(),
 
               Padding(
                 padding:
@@ -205,7 +205,7 @@ class HomePage extends StatelessWidget {
           const CustomCard(),
 
           const SizedBox(height: 20),
-
+          // Basic Widget 4: Text
           Text(
             'Welcome $email',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
